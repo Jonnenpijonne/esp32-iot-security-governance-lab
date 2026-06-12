@@ -24,12 +24,13 @@ def test_inventory_record_needs_review():
         owner="facility-it",
         power_recorded=False,
         cabling_recorded=True,
-        documentation_recorded=True,
+        documentation_recorded=False,
     )
     result = evaluate_network_point(record)
     assert result.status == "NEEDS_REVIEW"
-    assert result.score == 90
+    assert result.score == 80
     assert "power record missing" in result.reason
+    assert "documentation record missing" in result.reason
 
 
 def test_inventory_record_incomplete():
