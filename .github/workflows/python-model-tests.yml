@@ -31,7 +31,7 @@ jobs:
         run: python models/network_inventory_model.py
 
       - name: Run pytest
-        run: python -m pytest tests/test_readiness_model.py
+        run: python -m pytest tests/test_readiness_model.py tests/test_network_inventory_model.py
 
       - name: Write model test summary
         if: always()
