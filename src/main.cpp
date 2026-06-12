@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "lab_config.example.h"
+#include "sensor_simulation.h"
 
 #ifndef LAB_FIRMWARE_VERSION
 #define LAB_FIRMWARE_VERSION "0.1.0"
@@ -11,6 +12,7 @@
 
 static const uint32_t STATUS_INTERVAL_MS = 10000;
 static uint32_t last_status_ms = 0;
+static uint32_t sensor_sequence = 0;
 
 static void print_boot_banner() {
   Serial.println();
@@ -29,6 +31,8 @@ static void print_boot_banner() {
 }
 
 static void emit_local_status() {
+  const SimulatedSensorReading reading = read_simulated_sensor(sensor_sequence++);
+
   Serial.print("uptime_ms=");
   Serial.print(millis());
   Serial.print(" status=running");
@@ -37,7 +41,9 @@ static void emit_local_status() {
   Serial.print(" telemetry=");
   Serial.print(LAB_EXAMPLE_ENABLE_TELEMETRY ? "enabled" : "disabled");
   Serial.print(" ota=");
-  Serial.println(LAB_EXAMPLE_ENABLE_OTA ? "enabled" : "disabled");
+  Serial.print(LAB_EXAMPLE_ENABLE_OTA ? "enabled" : "disabled");
+  print_simulated_sensor_reading(reading);
+  Serial.println();
 }
 
 void setup() {
