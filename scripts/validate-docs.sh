@@ -25,6 +25,7 @@ REQUIRED_FILES=(
   "examples/esp32-wifi-sensor-change.md"
   "examples/esp32-ota-update-change.md"
   "evidence/EXAMPLE_VALIDATION_REPORT.md"
+  "evidence/EXAMPLE_FIRMWARE_BASELINE_REPORT.md"
 )
 
 FAILED=0
