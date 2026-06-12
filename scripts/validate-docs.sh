@@ -13,7 +13,10 @@ REQUIRED_FILES=(
   "models/README.md"
   "models/readiness_model.py"
   "models/network_inventory_model.py"
+  "models/change_control_model.py"
   "tests/test_readiness_model.py"
+  "tests/test_network_inventory_model.py"
+  "tests/test_change_control_model.py"
   "docs/ARCHITECTURE.md"
   "docs/THREAT_MODEL.md"
   "docs/SECURITY_BASELINE.md"
@@ -37,6 +40,9 @@ REQUIRED_FILES=(
   "docs/NETWORK_POINT_INVENTORY_MODEL.md"
   "docs/AUTHORIZED_SITE_SURVEY_MODEL.md"
   "docs/NETWORK_POINT_RECORD_SCHEMA.md"
+  "docs/BLAST_RADIUS_AND_ROLLBACK_MODEL.md"
+  "docs/ROLLBACK_REHEARSAL.md"
+  "docs/CHANGE_SIZE_GATES.md"
   "examples/esp32-wifi-sensor-change.md"
   "examples/esp32-ota-update-change.md"
   "examples/esp32-device-identity-change.md"
@@ -50,6 +56,7 @@ REQUIRED_FILES=(
   "evidence/EXAMPLE_SENSOR_SIMULATION_REPORT.md"
   "evidence/EXAMPLE_DATA_RETENTION_REPORT.md"
   "evidence/EXAMPLE_SITE_SURVEY_REPORT.md"
+  "evidence/EXAMPLE_BLAST_RADIUS_ROLLBACK_REPORT.md"
 )
 
 FAILED=0
