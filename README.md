@@ -8,6 +8,21 @@ The goal is to demonstrate how a small embedded/edge-device project can stay und
 
 ---
 
+## Start here
+
+| Resource | Purpose |
+| --- | --- |
+| `docs/GETTING_STARTED.md` | Local setup and validation commands |
+| `docs/PROJECT_INDEX.md` | Project-level map |
+| `wiki/Home.md` | Wiki-style landing page |
+| `wiki/Model-Catalog.md` | Python model catalog |
+| `wiki/Evidence-Pack.md` | Evidence examples |
+| `wiki/License-and-Use.md` | License and intended-use summary |
+| `docs/LICENSE_POLICY.md` | Apache-2.0 license policy |
+| `NOTICE` | Project notice and attribution context |
+
+---
+
 ## What this repository demonstrates
 
 | Area | Evidence |
@@ -149,6 +164,9 @@ flowchart LR
 
 ```text
 docs/
+  GETTING_STARTED.md
+  PROJECT_INDEX.md
+  LICENSE_POLICY.md
   ARCHITECTURE.md
   THREAT_MODEL.md
   SECURITY_BASELINE.md
@@ -176,6 +194,17 @@ docs/
   INTERFERENCE_OBSERVATION_MODEL.md
   EMB3D_ALIGNMENT.md
   EMB3D_MAPPING_MODEL.md
+
+wiki/
+  Home.md
+  Project-Overview.md
+  Architecture.md
+  Validation-Guide.md
+  Security-Boundary.md
+  EMB3D-Alignment.md
+  Model-Catalog.md
+  Evidence-Pack.md
+  License-and-Use.md
 
 include/
   lab_config.example.h
@@ -315,8 +344,10 @@ flowchart LR
 | 13 | Interference observation | Done |
 | 14 | EMB3D alignment layer | Done |
 | 15 | README and project-level instructions | Done |
-| 16 | Release candidate checklist | Next |
-| 17 | Portfolio landing-page summary | Next |
+| 16 | Apache-2.0 licensing and NOTICE | Done |
+| 17 | Wiki documentation | Done |
+| 18 | Release candidate checklist | Next |
+| 19 | Portfolio landing-page summary | Next |
 
 ---
 
@@ -355,4 +386,11 @@ This repository is not:
 
 ## License
 
-MIT or project-specific license to be decided.
+Apache License, Version 2.0.
+
+See:
+
+- `LICENSE`
+- `NOTICE`
+- `docs/LICENSE_POLICY.md`
+- `wiki/License-and-Use.md`
