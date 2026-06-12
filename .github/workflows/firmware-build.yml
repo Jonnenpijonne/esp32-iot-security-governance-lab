@@ -1,0 +1,37 @@
+name: ESP32 Firmware Baseline Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  firmware-build:
+    name: Build ESP32 firmware skeleton
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install PlatformIO
+        run: python -m pip install --upgrade platformio
+
+      - name: Build firmware skeleton
+        run: pio run
+
+      - name: Write firmware build summary
+        if: always()
+        run: |
+          echo "## ESP32 Firmware Baseline Build" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "This workflow builds the local-only firmware skeleton." >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Network, telemetry and OTA features are intentionally disabled in the initial baseline." >> "$GITHUB_STEP_SUMMARY"
