@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "lab_config.example.h"
 
 #ifndef LAB_FIRMWARE_VERSION
 #define LAB_FIRMWARE_VERSION "0.1.0"
@@ -18,13 +19,25 @@ static void print_boot_banner() {
   Serial.println(LAB_FIRMWARE_VERSION);
   Serial.print("Device profile: ");
   Serial.println(LAB_DEVICE_PROFILE);
+  Serial.print("Example device id: ");
+  Serial.println(LAB_EXAMPLE_DEVICE_ID);
+  Serial.print("Example config profile: ");
+  Serial.println(LAB_EXAMPLE_CONFIG_PROFILE);
+  Serial.print("Example site label: ");
+  Serial.println(LAB_EXAMPLE_SITE_LABEL);
   Serial.println("Mode: safe local skeleton, no network, no telemetry, no OTA");
 }
 
 static void emit_local_status() {
   Serial.print("uptime_ms=");
   Serial.print(millis());
-  Serial.println(" status=running network=disabled telemetry=disabled ota=disabled");
+  Serial.print(" status=running");
+  Serial.print(" network=");
+  Serial.print(LAB_EXAMPLE_ENABLE_NETWORK ? "enabled" : "disabled");
+  Serial.print(" telemetry=");
+  Serial.print(LAB_EXAMPLE_ENABLE_TELEMETRY ? "enabled" : "disabled");
+  Serial.print(" ota=");
+  Serial.println(LAB_EXAMPLE_ENABLE_OTA ? "enabled" : "disabled");
 }
 
 void setup() {
