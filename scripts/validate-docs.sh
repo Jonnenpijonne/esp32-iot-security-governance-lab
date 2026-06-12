@@ -6,6 +6,7 @@ REQUIRED_FILES=(
   ".gitignore"
   "platformio.ini"
   "src/main.cpp"
+  "include/lab_config.example.h"
   "docs/ARCHITECTURE.md"
   "docs/THREAT_MODEL.md"
   "docs/SECURITY_BASELINE.md"
@@ -22,10 +23,13 @@ REQUIRED_FILES=(
   "docs/PUBLIC_SCOPE.md"
   "docs/FIRMWARE_SECURITY_MODEL.md"
   "docs/KATAKRI_ALIGNMENT.md"
+  "docs/DEVICE_IDENTITY_AND_CONFIGURATION.md"
   "examples/esp32-wifi-sensor-change.md"
   "examples/esp32-ota-update-change.md"
+  "examples/esp32-device-identity-change.md"
   "evidence/EXAMPLE_VALIDATION_REPORT.md"
   "evidence/EXAMPLE_FIRMWARE_BASELINE_REPORT.md"
+  "evidence/EXAMPLE_DEVICE_IDENTITY_REPORT.md"
 )
 
 FAILED=0
