@@ -24,8 +24,11 @@ jobs:
       - name: Install pytest
         run: python -m pip install --upgrade pytest
 
-      - name: Run model example
+      - name: Run readiness model example
         run: python models/readiness_model.py
+
+      - name: Run inventory model example
+        run: python models/network_inventory_model.py
 
       - name: Run pytest
         run: python -m pytest tests/test_readiness_model.py
@@ -35,4 +38,4 @@ jobs:
         run: |
           echo "## Python Model Tests" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "Executed readiness model example and pytest validation." >> "$GITHUB_STEP_SUMMARY"
+          echo "Executed readiness and inventory model examples plus pytest validation." >> "$GITHUB_STEP_SUMMARY"
