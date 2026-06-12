@@ -1,0 +1,65 @@
+# Secrets / local environment
+.env
+.env.local
+*.secret
+*.key
+*.pem
+secrets/
+private/
+
+# Generated evidence / reports
+/evidence/generated/
+/reports/generated/
+*.log
+
+# Python cache / validation tooling
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# PlatformIO / embedded build artifacts
+.pio/
+.pioenvs/
+.piolibdeps/
+platformio.ini.bak
+
+# ESP-IDF build artifacts
+/build/
+sdkconfig.old
+managed_components/
+
+# Arduino / embedded generated files
+*.elf
+*.bin
+*.hex
+*.map
+*.lst
+*.o
+*.a
+*.d
+
+# Firmware / release artifacts
+firmware/build/
+firmware/dist/
+*.uf2
+
+# Local device logs / captures
+captures/
+*.pcap
+*.pcapng
+serial-logs/
+telemetry-dumps/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
