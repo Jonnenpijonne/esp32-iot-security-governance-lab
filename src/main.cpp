@@ -2,6 +2,7 @@
 #include "lab_config.example.h"
 #include "sensor_simulation.h"
 #include "retention_policy.h"
+#include "audit_events.h"
 
 #ifndef LAB_FIRMWARE_VERSION
 #define LAB_FIRMWARE_VERSION "0.1.0"
@@ -31,11 +32,13 @@ static void print_boot_banner() {
   Serial.println(LAB_EXAMPLE_SITE_LABEL);
   Serial.println("Mode: safe local skeleton, no network, no telemetry, no OTA");
   Serial.println("Retention: volatile last reading only, no persistent storage");
+  emit_audit_event(AuditEventType::BOOT, "local_boot_banner_printed");
 }
 
 static void emit_local_status() {
   const SimulatedSensorReading reading = read_simulated_sensor(sensor_sequence++);
   update_local_retention(retention_state, reading);
+  emit_audit_event(AuditEventType::SENSOR_READING_UPDATED, "synthetic_local_reading_updated");
 
   Serial.print("uptime_ms=");
   Serial.print(millis());
@@ -49,6 +52,9 @@ static void emit_local_status() {
   print_simulated_sensor_reading(reading);
   print_local_retention_state(retention_state);
   Serial.println();
+
+  emit_audit_event(AuditEventType::RETENTION_STATE_REPORTED, "volatile_last_reading_only");
+  emit_audit_event(AuditEventType::STATUS_EMITTED, "local_status_printed");
 }
 
 void setup() {
