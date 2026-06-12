@@ -1,0 +1,12 @@
+ESP32 / Embedded Edge Device Security Governance Lab
+Copyright 2026 Jonne Silvennoinen
+
+This repository is a public, synthetic governance and security-assurance lab for ESP32 and embedded edge-device projects.
+
+The project includes firmware skeletons, documentation templates, Python validation models, evidence examples and workflow definitions intended for portfolio, learning, governance and defensive assurance use.
+
+This repository does not contain customer-specific material, protected project records, classified information, production deployment data, credentials, keys, real network inventories or operational environment details.
+
+MITRE EMB3D is referenced as an external framework for embedded-device threat-modeling alignment. This repository does not copy or redistribute the EMB3D dataset.
+
+KATAKRI is referenced as a Finnish security-audit and public/private-boundary alignment context. This repository does not claim KATAKRI certification or authority approval.
