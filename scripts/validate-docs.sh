@@ -35,16 +35,21 @@ REQUIRED_FILES=(
   "docs/DATA_RETENTION_BOUNDARY.md"
   "docs/EVENT_VISIBILITY_MODEL.md"
   "docs/NETWORK_POINT_INVENTORY_MODEL.md"
+  "docs/AUTHORIZED_SITE_SURVEY_MODEL.md"
+  "docs/NETWORK_POINT_RECORD_SCHEMA.md"
   "examples/esp32-wifi-sensor-change.md"
   "examples/esp32-ota-update-change.md"
   "examples/esp32-device-identity-change.md"
   "examples/esp32-sensor-simulation-change.md"
   "examples/esp32-data-retention-boundary-change.md"
+  "examples/building-network-point-survey.md"
+  "examples/shelter-readiness-assessment.md"
   "evidence/EXAMPLE_VALIDATION_REPORT.md"
   "evidence/EXAMPLE_FIRMWARE_BASELINE_REPORT.md"
   "evidence/EXAMPLE_DEVICE_IDENTITY_REPORT.md"
   "evidence/EXAMPLE_SENSOR_SIMULATION_REPORT.md"
   "evidence/EXAMPLE_DATA_RETENTION_REPORT.md"
+  "evidence/EXAMPLE_SITE_SURVEY_REPORT.md"
 )
 
 FAILED=0
