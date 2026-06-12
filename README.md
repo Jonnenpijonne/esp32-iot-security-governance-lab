@@ -14,12 +14,14 @@ The goal is to demonstrate how a small embedded/edge-device project can stay und
 | --- | --- |
 | `docs/GETTING_STARTED.md` | Local setup and validation commands |
 | `docs/PROJECT_INDEX.md` | Project-level map |
-| `wiki/Home.md` | Wiki-style landing page |
+| `wiki/Home.md` | Repository-versioned wiki landing page |
 | `wiki/Model-Catalog.md` | Python model catalog |
 | `wiki/Evidence-Pack.md` | Evidence examples |
 | `wiki/License-and-Use.md` | License and intended-use summary |
 | `docs/LICENSE_POLICY.md` | Apache-2.0 license policy |
 | `NOTICE` | Project notice and attribution context |
+
+> **Wiki note:** this project uses a version-controlled `wiki/` directory inside the repository. It is not the separate GitHub Wiki tab. This keeps the wiki content in the same branch, commit history and validation flow as the rest of the project.
 
 ---
 
@@ -345,7 +347,7 @@ flowchart LR
 | 14 | EMB3D alignment layer | Done |
 | 15 | README and project-level instructions | Done |
 | 16 | Apache-2.0 licensing and NOTICE | Done |
-| 17 | Wiki documentation | Done |
+| 17 | Version-controlled repository wiki | Done |
 | 18 | Release candidate checklist | Next |
 | 19 | Portfolio landing-page summary | Next |
 
