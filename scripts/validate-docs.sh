@@ -17,6 +17,8 @@ REQUIRED_FILES=(
   "tests/test_readiness_model.py"
   "tests/test_network_inventory_model.py"
   "tests/test_change_control_model.py"
+  "docs/ROADMAP.md"
+  "docs/DEVELOPER_HANDOFF.md"
   "docs/ARCHITECTURE.md"
   "docs/THREAT_MODEL.md"
   "docs/SECURITY_BASELINE.md"
