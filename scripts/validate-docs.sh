@@ -4,6 +4,8 @@ set -euo pipefail
 REQUIRED_FILES=(
   "README.md"
   ".gitignore"
+  "platformio.ini"
+  "src/main.cpp"
   "docs/ARCHITECTURE.md"
   "docs/THREAT_MODEL.md"
   "docs/SECURITY_BASELINE.md"
@@ -18,6 +20,8 @@ REQUIRED_FILES=(
   "docs/RELEASE_GOVERNANCE.md"
   "docs/OPERATIONS_RUNBOOK.md"
   "docs/PUBLIC_SCOPE.md"
+  "docs/FIRMWARE_SECURITY_MODEL.md"
+  "docs/KATAKRI_ALIGNMENT.md"
   "examples/esp32-wifi-sensor-change.md"
   "examples/esp32-ota-update-change.md"
   "evidence/EXAMPLE_VALIDATION_REPORT.md"
