@@ -1,1 +1,31 @@
+name: ESP32 IoT Security Governance Validation
 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate documentation baseline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run documentation validation
+        run: bash scripts/validate-docs.sh
+
+      - name: Write validation summary
+        if: always()
+        run: |
+          echo "## ESP32 IoT Security Governance Validation" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Validation command:" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo '```bash' >> "$GITHUB_STEP_SUMMARY"
+          echo 'bash scripts/validate-docs.sh' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
