@@ -48,15 +48,18 @@ jobs:
       - name: Run observation model example
         run: python models/interference_observation_model.py
 
-      - name: Run EMB3D alignment model example
+      - name: Run EMB3D mapping model example
         run: python models/emb3d_mapping_model.py
 
+      - name: Run EMB3D property alignment model example
+        run: python models/emb3d_alignment_model.py
+
       - name: Run pytest
-        run: python -m pytest tests/test_readiness_model.py tests/test_network_inventory_model.py tests/test_change_control_model.py tests/test_vectorization_model.py tests/test_model_package_gate.py tests/test_blue_team_protection_model.py tests/test_authorized_exercise_gate.py tests/test_interference_observation_model.py tests/test_emb3d_mapping_model.py
+        run: python -m pytest tests/test_readiness_model.py tests/test_network_inventory_model.py tests/test_change_control_model.py tests/test_vectorization_model.py tests/test_model_package_gate.py tests/test_blue_team_protection_model.py tests/test_authorized_exercise_gate.py tests/test_interference_observation_model.py tests/test_emb3d_mapping_model.py tests/test_emb3d_alignment_model.py
 
       - name: Write model test summary
         if: always()
         run: |
           echo "## Python Model Tests" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "Executed readiness, inventory, change control, vectorization, package gate, defensive protection and EMB3D alignment model validation." >> "$GITHUB_STEP_SUMMARY"
+          echo "Executed readiness, inventory, change control, vectorization, package gate, defensive protection and complete EMB3D alignment model validation." >> "$GITHUB_STEP_SUMMARY"
