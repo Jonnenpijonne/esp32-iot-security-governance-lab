@@ -8,6 +8,16 @@ The goal is to demonstrate how a small embedded/edge-device project can stay und
 
 ---
 
+## Portfolio / author context
+
+This repository is part of Jonne Silvennoinen's public GitHub portfolio:
+
+- GitHub profile: [Jonnenpijonne](https://github.com/Jonnenpijonne)
+
+The broader portfolio focuses on practical security governance, embedded/edge-device assurance, documentation-driven DevSecOps, evidence-based validation and controlled public/private project boundaries.
+
+---
+
 ## Start here
 
 | Resource | Purpose |
