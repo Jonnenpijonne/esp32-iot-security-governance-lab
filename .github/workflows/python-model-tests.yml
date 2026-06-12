@@ -33,12 +33,18 @@ jobs:
       - name: Run change control model example
         run: python models/change_control_model.py
 
+      - name: Run vectorization model example
+        run: python models/vectorization_model.py
+
+      - name: Run model package gate example
+        run: python models/model_package_gate.py
+
       - name: Run pytest
-        run: python -m pytest tests/test_readiness_model.py tests/test_network_inventory_model.py tests/test_change_control_model.py
+        run: python -m pytest tests/test_readiness_model.py tests/test_network_inventory_model.py tests/test_change_control_model.py tests/test_vectorization_model.py tests/test_model_package_gate.py
 
       - name: Write model test summary
         if: always()
         run: |
           echo "## Python Model Tests" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "Executed readiness, inventory and change control model examples plus pytest validation." >> "$GITHUB_STEP_SUMMARY"
+          echo "Executed readiness, inventory, change control, vectorization and package gate model examples plus pytest validation." >> "$GITHUB_STEP_SUMMARY"
