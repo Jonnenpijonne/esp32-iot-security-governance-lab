@@ -1,10 +1,10 @@
-# ESP32 Edge Device Security & Authorized Site Readiness Governance Lab
+# ESP32 / Embedded Edge Device Security Governance Lab
 
-**Governance-first lab for ESP32 edge-device security, authorized site readiness, network point documentation, rollback repeatability and audit evidence.**
+**Governance-first lab for ESP32 and embedded edge-device security, readiness validation, network point inventory, defensive exercise gates, EMB3D-aligned threat-modeling evidence and KATAKRI-style public/private boundaries.**
 
-This repository is a public portfolio and reference baseline. It is not a production firmware product, customer delivery package, classified project record or generic ESP32 tutorial.
+This repository is a public portfolio and reference baseline. It is not a production firmware product, customer delivery package, classified project record, penetration testing toolkit, drone-control project or generic ESP32 tutorial.
 
-The goal is to demonstrate how a small edge-device project can stay understandable, testable, reversible and evidence-driven without becoming an over-engineered enterprise process monster.
+The goal is to demonstrate how a small embedded/edge-device project can stay understandable, testable, reversible and evidence-driven without becoming an over-engineered enterprise process monster.
 
 ---
 
@@ -16,11 +16,16 @@ The goal is to demonstrate how a small edge-device project can stay understandab
 | Device identity and configuration boundary | `include/lab_config.example.h`, `docs/DEVICE_IDENTITY_AND_CONFIGURATION.md` |
 | Sensor data governance | synthetic local readings, `docs/SENSOR_DATA_GOVERNANCE.md` |
 | Data retention boundary | volatile last reading only, `docs/DATA_RETENTION_BOUNDARY.md` |
-| Event visibility | local serial events, `docs/EVENT_VISIBILITY_MODEL.md` |
+| Event visibility | local serial events, `include/audit_events.h`, `docs/EVENT_VISIBILITY_MODEL.md` |
 | Readiness scoring | `models/readiness_model.py`, pytest |
-| Network point documentation quality | `models/network_inventory_model.py` |
-| Authorized site readiness package | site survey model, synthetic examples, evidence report |
-| Blast radius and rollback repeatability | `models/change_control_model.py`, rollback docs, tests |
+| Network point inventory quality | `models/network_inventory_model.py`, `docs/NETWORK_POINT_INVENTORY_MODEL.md` |
+| Network point readiness review | `models/network_point_model.py`, `docs/NETWORK_POINT_READINESS.md` |
+| Change control and rollback | `models/change_control_model.py`, rollback docs, tests |
+| Vectorization / model package gate | `models/vectorization_model.py`, `models/model_package_gate.py` |
+| Defensive exercise gate | `models/authorized_exercise_gate.py`, `docs/DEFENSIVE_EXERCISE_READINESS.md` |
+| Blue-team protection scoring | `models/blue_team_protection_model.py`, `docs/BLUE_TEAM_PROTECTION_MODEL.md` |
+| Interference observation | `models/interference_observation_model.py`, `docs/INTERFERENCE_OBSERVATION_MODEL.md` |
+| MITRE EMB3D alignment layer | `docs/EMB3D_ALIGNMENT.md`, `docs/EMB3D_MAPPING_MODEL.md`, EMB3D models/tests |
 | KATAKRI-aligned public/private boundary | `docs/KATAKRI_ALIGNMENT.md`, `docs/PUBLIC_SCOPE.md` |
 | CI validation | documentation validation, firmware build, Python model tests |
 
@@ -28,7 +33,7 @@ The goal is to demonstrate how a small edge-device project can stay understandab
 
 ## Core principle
 
-Small technical systems still need clear governance when they touch physical space, device identity, environmental data, network points, site readiness or regulated operating environments.
+Small technical systems still need clear governance when they touch physical space, device identity, environmental data, network points, readiness decisions, defensive validation, evidence records or regulated operating environments.
 
 The project keeps the baseline intentionally safe:
 
@@ -38,9 +43,12 @@ no real site details
 no network scanning
 no wireless discovery
 no credential testing
+no exploit logic
+no interference generation
 no telemetry upload
 no persistent sensor storage
 no production-readiness claim
+no certification claim
 ```
 
 ---
@@ -54,19 +62,25 @@ flowchart LR
     C --> D[Serial status output]
     D --> E[Local event visibility]
 
-    F[Python readiness model] --> G[READY / LIMITED / NOT_READY]
-    H[Network point inventory model] --> I[DOCUMENTED / NEEDS_REVIEW / INCOMPLETE]
-    J[Change control model] --> K[PROCEED / REVIEW / STOP]
+    F[Readiness model] --> G[READY / LIMITED / NOT_READY]
+    H[Network inventory model] --> I[DOCUMENTED / NEEDS_REVIEW / INCOMPLETE]
+    J[Network point readiness] --> K[READY / REVIEW / UNUSABLE]
+    L[Change control model] --> M[PROCEED / REVIEW / STOP]
+    N[Blue-team protection model] --> O[STRONG / PARTIAL / WEAK]
+    P[Exercise gate] --> Q[GO / PREPARE / NO_GO]
+    R[Interference observation] --> S[NORMAL / WATCH / ESCALATE]
+    T[EMB3D alignment models] --> U[LOW / MEDIUM / HIGH and VALIDATED / EVIDENCED / IDENTIFIED / GAP]
 
-    L[Authorized site survey package] --> F
-    L --> H
-    L --> J
-
-    M[Evidence reports] --> N[Audit-ready public examples]
-    F --> M
-    H --> M
-    J --> M
-    E --> M
+    V[Evidence reports] --> W[Audit-ready public examples]
+    F --> V
+    H --> V
+    J --> V
+    L --> V
+    N --> V
+    P --> V
+    R --> V
+    T --> V
+    E --> V
 ```
 
 ---
@@ -75,13 +89,13 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    A[Proposed change] --> B{Scope clear?}
+    A[Proposed change or exercise] --> B{Scope clear?}
     B -- No --> X[STOP: clarify scope]
-    B -- Yes --> C{Public/private boundary clear?}
+    B -- Yes --> C{Permission / boundary clear?}
     C -- No --> X
-    C -- Yes --> D[Classify change size]
+    C -- Yes --> D[Classify change size or exercise type]
     D --> E[Assess blast radius]
-    E --> F{Rollback defined?}
+    E --> F{Rollback owner defined?}
     F -- No --> Y[REVIEW: define rollback]
     F -- Yes --> G{Validation passed?}
     G -- No --> Y
@@ -92,29 +106,20 @@ flowchart TD
 
 ---
 
-## Blast radius and rollback flow
+## EMB3D alignment flow
 
 ```mermaid
 flowchart TD
-    A[Change record] --> B[Count affected devices]
-    A --> C[Count affected areas]
-    A --> D[Check external behavior]
-    B --> E{Low radius?}
-    C --> E
-    D --> E
-    E -- Yes --> F[LOW]
-    E -- No --> G{Small controlled group?}
-    G -- Yes --> H[MEDIUM]
-    G -- No --> I[HIGH]
-
-    F --> J{Rollback tested?}
-    H --> J
-    I --> K[REVIEW required]
-    J -- Yes --> L{Validation passed and evidence recorded?}
-    J -- No --> K
-    L -- Yes --> M[PROCEED]
-    L -- No --> K
+    A[Identify embedded device property] --> B[Ask exposure question]
+    B --> C[Map mitigation evidence]
+    C --> D{CI or test validation?}
+    D -- Yes --> E[VALIDATED]
+    D -- No --> F[EVIDENCED / IDENTIFIED]
+    F --> G[Private annex needed for real deployment]
+    E --> H[Evidence package]
 ```
+
+This repository does not copy the MITRE EMB3D dataset. It provides a lightweight public mapping layer that can be connected to real EMB3D references and private project annexes when needed.
 
 ---
 
@@ -126,12 +131,14 @@ flowchart LR
     A --> A2[Reusable templates]
     A --> A3[Governance models]
     A --> A4[Validation scripts]
+    A --> A5[Portfolio evidence]
 
     B[Private project annex] --> B1[Real site names]
     B --> B2[Real room labels]
     B --> B3[Real device inventory]
     B --> B4[Real evidence]
     B --> B5[Approvals and project records]
+    B --> B6[Real EMB3D mappings]
 
     A -. never store real project material .-> B
 ```
@@ -163,11 +170,12 @@ docs/
   DATA_RETENTION_BOUNDARY.md
   EVENT_VISIBILITY_MODEL.md
   NETWORK_POINT_INVENTORY_MODEL.md
-  AUTHORIZED_SITE_SURVEY_MODEL.md
-  NETWORK_POINT_RECORD_SCHEMA.md
-  BLAST_RADIUS_AND_ROLLBACK_MODEL.md
-  ROLLBACK_REHEARSAL.md
-  CHANGE_SIZE_GATES.md
+  NETWORK_POINT_READINESS.md
+  DEFENSIVE_EXERCISE_READINESS.md
+  BLUE_TEAM_PROTECTION_MODEL.md
+  INTERFERENCE_OBSERVATION_MODEL.md
+  EMB3D_ALIGNMENT.md
+  EMB3D_MAPPING_MODEL.md
 
 include/
   lab_config.example.h
@@ -181,13 +189,29 @@ src/
 models/
   readiness_model.py
   network_inventory_model.py
+  network_point_model.py
   change_control_model.py
+  vectorization_model.py
+  model_package_gate.py
+  blue_team_protection_model.py
+  authorized_exercise_gate.py
+  interference_observation_model.py
+  emb3d_mapping_model.py
+  emb3d_alignment_model.py
   README.md
 
 tests/
   test_readiness_model.py
   test_network_inventory_model.py
+  test_network_point_model.py
   test_change_control_model.py
+  test_vectorization_model.py
+  test_model_package_gate.py
+  test_blue_team_protection_model.py
+  test_authorized_exercise_gate.py
+  test_interference_observation_model.py
+  test_emb3d_mapping_model.py
+  test_emb3d_alignment_model.py
 
 examples/
   esp32-wifi-sensor-change.md
@@ -195,8 +219,8 @@ examples/
   esp32-device-identity-change.md
   esp32-sensor-simulation-change.md
   esp32-data-retention-boundary-change.md
-  building-network-point-survey.md
-  shelter-readiness-assessment.md
+  network-point-readiness-review.md
+  emb3d-property-alignment-review.md
 
 evidence/
   EXAMPLE_VALIDATION_REPORT.md
@@ -204,8 +228,7 @@ evidence/
   EXAMPLE_DEVICE_IDENTITY_REPORT.md
   EXAMPLE_SENSOR_SIMULATION_REPORT.md
   EXAMPLE_DATA_RETENTION_REPORT.md
-  EXAMPLE_SITE_SURVEY_REPORT.md
-  EXAMPLE_BLAST_RADIUS_ROLLBACK_REPORT.md
+  EXAMPLE_EMB3D_ALIGNMENT_REPORT.md
 
 .github/workflows/
   validation.yml
@@ -221,10 +244,32 @@ Run the full local validation set:
 
 ```bash
 bash scripts/validate-docs.sh
+
 python models/readiness_model.py
 python models/network_inventory_model.py
+python models/network_point_model.py
 python models/change_control_model.py
-python -m pytest tests/test_readiness_model.py tests/test_network_inventory_model.py tests/test_change_control_model.py
+python models/vectorization_model.py
+python models/model_package_gate.py
+python models/blue_team_protection_model.py
+python models/authorized_exercise_gate.py
+python models/interference_observation_model.py
+python models/emb3d_mapping_model.py
+python models/emb3d_alignment_model.py
+
+python -m pytest \
+  tests/test_readiness_model.py \
+  tests/test_network_inventory_model.py \
+  tests/test_network_point_model.py \
+  tests/test_change_control_model.py \
+  tests/test_vectorization_model.py \
+  tests/test_model_package_gate.py \
+  tests/test_blue_team_protection_model.py \
+  tests/test_authorized_exercise_gate.py \
+  tests/test_interference_observation_model.py \
+  tests/test_emb3d_mapping_model.py \
+  tests/test_emb3d_alignment_model.py
+
 pio run
 ```
 
@@ -246,35 +291,7 @@ flowchart LR
 
     B --> E[Required files present]
     C --> F[PlatformIO build passes]
-    D --> G[Readiness / inventory / change-control tests pass]
-```
-
----
-
-## Roadmap
-
-```mermaid
-gantt
-    title Project roadmap
-    dateFormat  YYYY-MM-DD
-    axisFormat  %m/%d
-
-    section Done
-    Firmware skeleton                 :done, a1, 2026-06-01, 1d
-    Device identity baseline          :done, a2, 2026-06-02, 1d
-    Sensor simulation                 :done, a3, 2026-06-03, 1d
-    Data retention boundary           :done, a4, 2026-06-04, 1d
-    Event visibility                  :done, a5, 2026-06-05, 1d
-    Python readiness model            :done, a6, 2026-06-06, 1d
-    Network point inventory model     :done, a7, 2026-06-07, 1d
-    Authorized site survey package    :done, a8, 2026-06-08, 1d
-    Blast radius and rollback model   :done, a9, 2026-06-09, 1d
-
-    section Next
-    README and diagrams               :active, b1, 2026-06-10, 1d
-    Developer handoff guide           :b2, 2026-06-11, 1d
-    Evidence pack index               :b3, 2026-06-12, 1d
-    Release candidate checklist       :b4, 2026-06-13, 1d
+    D --> G[Readiness / inventory / protection / EMB3D tests pass]
 ```
 
 ---
@@ -290,12 +307,16 @@ gantt
 | 5 | Data retention boundary | Done |
 | 6 | Event visibility | Done |
 | 7 | Readiness and inventory Python models | Done |
-| 8 | Authorized site survey package | Done |
+| 8 | Network point readiness | Done |
 | 9 | Blast radius / rollback repeatability | Done |
-| 10 | README, diagrams and roadmap | Done |
-| 11 | Developer handoff guide | Next |
-| 12 | Evidence pack index | Next |
-| 13 | Release candidate checklist | Next |
+| 10 | Vectorization / model package gate | Done |
+| 11 | Defensive exercise gate | Done |
+| 12 | Blue-team protection scoring | Done |
+| 13 | Interference observation | Done |
+| 14 | EMB3D alignment layer | Done |
+| 15 | README and project-level instructions | Done |
+| 16 | Release candidate checklist | Next |
+| 17 | Portfolio landing-page summary | Next |
 
 ---
 
@@ -303,11 +324,15 @@ gantt
 
 This repository can be described as:
 
-> A governance-first ESP32 edge-device and authorized site-readiness lab demonstrating local firmware behavior, synthetic sensor data, retention boundaries, event visibility, readiness scoring, network point documentation quality, blast-radius control, rollback repeatability and KATAKRI-aligned public/private evidence boundaries.
+> A governance-first ESP32 / embedded edge-device security lab demonstrating local firmware behavior, synthetic sensor data, retention boundaries, event visibility, readiness scoring, network point inventory, defensive exercise gates, interference observation, EMB3D-aligned threat-modeling evidence and KATAKRI-style public/private boundaries.
 
 Shorter version:
 
-> Edge Device Security & Authorized Site Readiness Governance Lab.
+> Embedded Edge Device Security Governance Lab.
+
+Portfolio version:
+
+> Public, synthetic ESP32 / embedded edge-device security governance lab for regulated environments: firmware baseline, device identity, sensor data governance, readiness scoring, network point inventory, blue-team protection scoring, authorized exercise gates, interference observation and EMB3D-aligned evidence validation.
 
 ---
 
@@ -321,6 +346,7 @@ This repository is not:
 - an automated network discovery tool
 - a wireless discovery tool
 - a penetration testing toolkit
+- an exploit repository
 - a drone-control project
 - a medical decision system
 - a certification claim
