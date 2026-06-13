@@ -322,6 +322,25 @@ ESP32 IoT Security Governance Lab validation: PASSED
 
 ---
 
+## Validation evidence
+
+Latest local validation result:
+
+| Check | Result |
+| --- | --- |
+| Documentation validation | PASSED |
+| Python model tests | 38 passed |
+| PlatformIO ESP32 firmware build | SUCCESS |
+| Target board | `esp32dev` |
+| Build artifacts | `firmware.elf`, `firmware.bin` |
+| RAM usage | 6.6% |
+| Flash usage | 20.5% |
+| Repository status | clean |
+
+This evidence shows that the repository is not only documented, but also locally validated through documentation checks, Python model tests and an ESP32 firmware build.
+
+---
+
 ## CI workflows
 
 ```mermaid
@@ -369,7 +388,7 @@ This repository can be described as:
 
 > A governance-first ESP32 / embedded edge-device security lab demonstrating local firmware behavior, synthetic sensor data, retention boundaries, event visibility, readiness scoring, network point inventory, defensive exercise gates, interference observation, EMB3D-aligned threat-modeling evidence and KATAKRI-style public/private boundaries.
 
-Shorter version:
+Short version:
 
 > Embedded Edge Device Security Governance Lab.
 
