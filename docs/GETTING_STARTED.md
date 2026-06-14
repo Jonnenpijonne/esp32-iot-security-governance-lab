@@ -68,6 +68,27 @@ Build:
 pio run
 ```
 
+If `pio` is not available directly in Git Bash, run PlatformIO through Python:
+
+```bash
+python -m platformio --version
+python -m platformio run
+```
+
+Expected local validation result:
+
+```text
+PlatformIO Core, version 6.1.19
+Processing esp32dev (platform: espressif32; board: esp32dev; framework: arduino)
+Linking .pio\build\esp32dev\firmware.elf
+Building .pio\build\esp32dev\firmware.bin
+RAM:   6.6%
+Flash: 20.5%
+[SUCCESS]
+```
+
+A successful build confirms that this repository has a locally runnable ESP32 firmware build path and is not documentation-only.
+
 ## 6. Interpret the project
 
 This repository demonstrates:
