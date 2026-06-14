@@ -83,6 +83,30 @@ rm -rf esp32-iot-security-governance-lab
 
 ---
 
+## PlatformIO command note
+
+This guide intentionally uses:
+
+```bash
+python -m platformio run
+```
+
+instead of relying only on:
+
+```bash
+pio run
+```
+
+On some Windows / Git Bash environments, PlatformIO may be installed for the current Python user but the direct `pio` command may not be available in the shell `PATH`. In that case, `pio run` can return `command not found` even though PlatformIO itself is installed and working.
+
+The validated fallback command is:
+
+```bash
+python -m platformio run
+```
+
+---
+
 ## Expected result
 
 ```text
