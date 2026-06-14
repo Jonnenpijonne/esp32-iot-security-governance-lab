@@ -24,6 +24,7 @@ The broader portfolio focuses on practical security governance, embedded/edge-de
 | --- | --- |
 | `docs/QUICK_LOCAL_VALIDATION.md` | Copy-paste local validation path for Git Bash |
 | `docs/GETTING_STARTED.md` | Local setup and validation commands |
+| `docs/GATEHOUSE_INTEGRATION.md` | Lightweight integration model with Gatehouse change-governance validation |
 | `docs/PROJECT_INDEX.md` | Project-level map |
 | `wiki/Home.md` | Repository-versioned wiki landing page |
 | `wiki/Model-Catalog.md` | Python model catalog |
@@ -243,6 +244,7 @@ flowchart LR
 docs/
   QUICK_LOCAL_VALIDATION.md
   GETTING_STARTED.md
+  GATEHOUSE_INTEGRATION.md
   PROJECT_INDEX.md
   LICENSE_POLICY.md
   ARCHITECTURE.md
