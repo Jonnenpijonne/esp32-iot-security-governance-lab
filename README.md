@@ -22,6 +22,7 @@ The broader portfolio focuses on practical security governance, embedded/edge-de
 
 | Resource | Purpose |
 | --- | --- |
+| `docs/QUICK_LOCAL_VALIDATION.md` | Copy-paste local validation path for Git Bash |
 | `docs/GETTING_STARTED.md` | Local setup and validation commands |
 | `docs/PROJECT_INDEX.md` | Project-level map |
 | `wiki/Home.md` | Repository-versioned wiki landing page |
@@ -176,6 +177,7 @@ flowchart LR
 
 ```text
 docs/
+  QUICK_LOCAL_VALIDATION.md
   GETTING_STARTED.md
   PROJECT_INDEX.md
   LICENSE_POLICY.md
@@ -312,6 +314,12 @@ python -m pytest \
   tests/test_emb3d_alignment_model.py
 
 pio run
+```
+
+For a copy-paste Git Bash validation path, see:
+
+```text
+docs/QUICK_LOCAL_VALIDATION.md
 ```
 
 Expected documentation result:
