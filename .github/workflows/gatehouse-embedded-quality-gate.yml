@@ -5,6 +5,7 @@ on:
     paths:
       - ".gatehouse/**"
       - "changes/**"
+      - "docs/**"
       - "tools/gatehouse_embedded_check.py"
       - ".github/workflows/gatehouse-embedded-quality-gate.yml"
   workflow_dispatch:
