@@ -30,6 +30,7 @@ No ESP32 runtime behavior is changed.
 
 ## Public/private boundary
 
+No real credentials are included.
 No live authentication material is included.
 No customer data is included.
 No production deployment is included.
