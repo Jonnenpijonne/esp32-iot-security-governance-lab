@@ -1,0 +1,60 @@
+profile: embedded-security-governance
+version: 1
+
+purpose: >
+  Lightweight pre-CI governance validation for embedded / edge-device
+  security documentation and boundary changes.
+
+scope: >
+  This profile validates change documents before a change enters the normal
+  technical CI/CD checks. It does not build firmware, deploy infrastructure,
+  scan networks, collect telemetry or replace human review.
+
+required_sections:
+  - "## Change type"
+  - "## Risk class"
+  - "## Scope"
+  - "## Security impact"
+  - "## Device / edge impact"
+  - "## Public/private boundary"
+  - "## Test plan"
+  - "## Rollback plan"
+  - "## Evidence"
+  - "## Non-goals"
+
+allowed_risk_classes:
+  - "Risk Class 1"
+  - "Risk Class 2"
+  - "Risk Class 3"
+  - "Risk Class 4"
+
+risk_class_guidance:
+  Risk Class 1: "Documentation-only or wording changes with no security, firmware, network or evidence-boundary impact."
+  Risk Class 2: "Controlled documentation, configuration-boundary or validation-evidence changes with limited technical impact."
+  Risk Class 3: "Changes that may affect firmware behavior, network exposure, device identity, telemetry, data retention or security-control interpretation."
+  Risk Class 4: "High-risk changes that would require explicit human approval before merging, such as real environment integration, production deployment claims, credential handling or external communication behavior."
+
+forbidden_terms:
+  - "production-ready"
+  - "customer data included"
+  - "real credentials"
+  - "classified"
+  - "secret key"
+  - "wireless scanning enabled"
+  - "credential testing"
+  - "cloud upload enabled"
+  - "real telemetry"
+  - "site mapping"
+  - "drone control"
+  - "penetration testing toolkit"
+
+required_boundary_statements:
+  - "No real credentials"
+  - "No customer data"
+  - "No production deployment"
+
+validator_intent:
+  - "Confirm the change is documented before CI/CD proceeds."
+  - "Keep public-safe and private evidence boundaries explicit."
+  - "Prevent accidental production, telemetry, scanning or credential-handling claims."
+  - "Support reviewability without adding a heavy compliance platform."
