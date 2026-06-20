@@ -1,0 +1,30 @@
+name: Gatehouse Embedded Quality Gate
+
+on:
+  pull_request:
+    paths:
+      - ".gatehouse/**"
+      - "changes/**"
+      - "tools/gatehouse_embedded_check.py"
+      - ".github/workflows/gatehouse-embedded-quality-gate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gatehouse-embedded-quality-gate:
+    name: Gatehouse embedded quality gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run embedded Gatehouse validator
+        run: python tools/gatehouse_embedded_check.py
