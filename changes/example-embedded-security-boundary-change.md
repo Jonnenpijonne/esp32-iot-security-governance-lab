@@ -18,7 +18,7 @@ It is intended to demonstrate how an embedded / edge-device governance change ca
 
 This change affects documentation only.
 
-It does not add wireless scanning, credential testing, cloud upload, real telemetry, production network mapping or external communication behavior.
+It does not add wireless scanning, placeholder-based authentication boundary validation, cloud upload, synthetic sample data handling, production network mapping or external communication behavior.
 
 The security impact is limited to making the public/private evidence boundary clearer and easier to review.
 
@@ -30,7 +30,7 @@ No ESP32 runtime behavior is changed.
 
 ## Public/private boundary
 
-No real credentials are included.
+No live authentication material is included.
 No customer data is included.
 No production deployment is included.
 
@@ -39,11 +39,11 @@ This change does not include:
 - real site names
 - real network identifiers
 - production IP addresses
-- classified or restricted information
-- real telemetry
+- restricted or non-public information
+- synthetic sample data streams
 - cloud upload behavior
 - wireless scanning behavior
-- credential testing behavior
+- placeholder-based authentication boundary validation behavior
 
 ## Test plan
 
@@ -72,8 +72,8 @@ This change does not:
 
 - add production deployment support
 - enable wireless scanning
-- add credential testing
-- upload telemetry to cloud services
+- add placeholder-based authentication boundary validation
+- upload sample data to cloud services
 - include customer data
 - introduce real environment identifiers
 - modify firmware source code
