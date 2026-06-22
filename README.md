@@ -339,10 +339,21 @@ evidence/
   EXAMPLE_DATA_RETENTION_REPORT.md
   EXAMPLE_EMB3D_ALIGNMENT_REPORT.md
 
+.gatehouse/
+  embedded-security-profile.yml
+  change-template.md
+
+changes/
+  example-embedded-security-boundary-change.md
+
+tools/
+  gatehouse_embedded_check.py
+
 .github/workflows/
   validation.yml
   firmware-build.yml
   python-model-tests.yml
+  gatehouse-embedded-quality-gate.yml
 ```
 
 ---
