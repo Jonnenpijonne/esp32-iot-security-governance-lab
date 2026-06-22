@@ -3,6 +3,7 @@ name: Gatehouse Embedded Quality Gate
 on:
   pull_request:
     paths:
+      - "README.md"
       - ".gatehouse/**"
       - "changes/**"
       - "docs/**"
