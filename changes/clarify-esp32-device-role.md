@@ -18,7 +18,7 @@ The change affects only documentation and does not alter firmware, models, tests
 
 This change has no runtime security impact.
 
-It clarifies the security-control interpretation of the lab by stating that ESP32 is used as a representative embedded / edge device, not as a production-ready device or real deployment scenario.
+It clarifies the security-control interpretation of the lab by stating that ESP32 is used as a representative embedded / edge device, not as an operational device or real deployment scenario.
 
 ## Device / edge impact
 
@@ -32,7 +32,7 @@ No real credentials are included.
 No customer data is included.
 No production deployment is included.
 
-The change does not include real site names, real network identifiers, production IP addresses, restricted information, telemetry upload behavior, wireless scanning behavior or credential testing behavior.
+The change does not include real site names, real network identifiers, production IP addresses, restricted information, telemetry upload behavior, wireless scanning behavior or login-validation behavior.
 
 ## Test plan
 
@@ -55,12 +55,12 @@ No production environment is affected.
 
 ## Non-goals
 
-- Does not add production deployment support
+- Does not add deployment support for operational environments
 - Does not change firmware behavior
 - Does not change Python model logic
 - Does not change CI workflow logic
 - Does not enable wireless scanning
-- Does not add credential testing
+- Does not add login-validation behavior
 - Does not upload telemetry to cloud services
 - Does not include customer data
 - Does not introduce real environment identifiers
